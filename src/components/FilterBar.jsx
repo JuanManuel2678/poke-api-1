@@ -6,15 +6,13 @@ export const FilterBar = ({setShowModal}) => {
   
   const { pokeType } = useContext(PokemonContext)
 
-
-
-
   return (
-    <aside className="min-w-[250px] min-h-[950px] flex  bg-[#f2f2f2] p-6 rounded-e-lg">
 
-      <div className="flex flex-col gap-[5px] w-full ">
+    <aside className=" fixed top-0 min-w-[250px] min-h-[950px] flex  bg-[#f2f2f2]/80 p-6 rounded-e-lg">
 
-        <button className=" flex ml-[170px] hover:bg-black rounded-xl" onClick={() => setShowModal(false)}>
+      <div className="flex flex-col gap-[5px] w-full mt-36 pt-6  ">
+
+        <button className=" flex ml-[170px] hover:bg-black rounded-xl mr-2" onClick={() => setShowModal(false)}>
         <svg 
       xmlns="http://www.w3.org/2000/svg" 
       fill="none" 

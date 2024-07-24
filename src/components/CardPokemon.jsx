@@ -2,12 +2,9 @@ import { Link } from "react-router-dom";
 import { primerMayuscula } from "../helper/helper,js";
 
 export const CardPokemon = ({ pokemon }) => {
-
-  
-
-  // funcion de filtrado 
   
   return (
+
     <Link to={`/pokemon/${pokemon.id}`} className="cursor-pointer">
 
       <li className="w-[280px] h-[370px]  flex flex-col justify-around font-kode rounded-md">
@@ -20,7 +17,7 @@ export const CardPokemon = ({ pokemon }) => {
         </figure>
 
         <div className="h-[35%] p-2 flex flex-col justify-between ml-2">
-          <span className="block text-[#888] ">N° 000{pokemon.id}</span>
+          <span className="block text-[#888] ">N° 0{pokemon.id}</span>
           <h1 className="text-black text-xl font-bold">{primerMayuscula(pokemon.name)}</h1>
           <div className="flex gap-3  ">
             {pokemon &&
@@ -36,5 +33,6 @@ export const CardPokemon = ({ pokemon }) => {
         </div>
       </li>
     </Link>
+
   );
 };

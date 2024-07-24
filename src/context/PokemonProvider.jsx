@@ -7,7 +7,7 @@ export const PokemonProvider = ({ children }) => {
   const [pokeType, setPokeType] = useState([]) // pokemon por tipo 
   const [allPokemons, setAllPokemos] = useState([]) // mostarr 50 pokemon 
   const [globalPokemos, setGlobalPokemons] = useState([]) // mostar todos los pokemon
-  const [search, setSearch] = useState('')
+  const [filteredPokemos, seFilteredPokemos] = useState([])
   
   const [offset, setOffSet] = useState(0)
   const [showModal, setShowModal] = useState(false) // mostarr el modal 
@@ -15,10 +15,8 @@ export const PokemonProvider = ({ children }) => {
 
   // Utilizar CustomHook - useForm
   const {valueSearch, onInputChange, onResetForm} = useForm({
-    valueSearch: ''
+    valueSearch: '',
   })
-
-
 
   // estados para aplicaciones Simples
   const [loading, setLoading] = useState(true)
@@ -39,17 +37,6 @@ export const PokemonProvider = ({ children }) => {
       setAllPokemos([...allPokemons, ...result])
       setLoading(false)
   }
-
-  const searchName = (e) => {
-    setSearch(e.target.value)
-    console.log(e.target.value)
-  }   
-
-  // btn cargar mas
-  const onClickLoadMore = () => {
-    setOffSet(offset + 50 )
-  }
-
 
   // llamr a todos los pokemon 
    async function getGlobalPokemons () {
@@ -83,9 +70,17 @@ export const PokemonProvider = ({ children }) => {
     setPokeType(rsJson.results)
   }   
 
+  
+  // btn cargar mas
+  const onClickLoadMore = () => {
+    setOffSet(offset + 50 )
+  }
+
+
+
   useEffect(() => {
     getAllPokemon()
-  }, [])
+  }, [offset])
 
   useEffect(() => {
     getGlobalPokemons()
@@ -107,10 +102,10 @@ export const PokemonProvider = ({ children }) => {
       pokeType,
       showModal,
       setShowModal,
-      search,
-      setSearch,
-      searchName,
       onClickLoadMore,
+      loading,
+      setLoading,
+      filteredPokemos,
     }}
     >
         {children}
